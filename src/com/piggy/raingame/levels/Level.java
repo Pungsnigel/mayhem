@@ -2,17 +2,17 @@ package com.piggy.raingame.levels;
 
 import com.piggy.raingame.graphics.Screen;
 
-public class Level {
+public abstract class Level {
 	
-	private int width, height;
-	private int [] tiles;
+	protected int width, height;
+	protected int [] tiles;
 	
 	/**
 	 * Create a random level of given size
 	 * @param width
 	 * @param height
 	 */
-	public Level(int width, int height) {
+	public  Level(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.tiles = new int [width * height];
@@ -45,7 +45,7 @@ public class Level {
 		
 	}
 
-	private void generateRandomLevel() {
+	protected void generateRandomLevel() {
 		
 	}
 	
