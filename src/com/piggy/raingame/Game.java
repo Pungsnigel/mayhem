@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.piggy.raingame.graphics.Screen;
+import com.piggy.raingame.input.KeyBoard;
 
 public class Game extends Canvas implements Runnable {
 
@@ -25,21 +26,23 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private boolean running = false;
+	private KeyBoard key;
 	
-	private int x = 0;
-	private int y = 0;
-
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int [] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	private Screen screen;
+	
+	private int x = 0, y = 0;
 	
 	public Game() {
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(size);
 
-		frame = new JFrame();
+		this.frame = new JFrame();
+		this.screen = new Screen(WIDTH, HEIGHT);
 		
-		this.screen = new Screen(WIDTH, HEIGHT);;
+		this.key = new KeyBoard();
+		addKeyListener(key);
 	}
 
 	public synchronized void start() {
@@ -65,6 +68,7 @@ public class Game extends Canvas implements Runnable {
 		int frames  	= 0;
 		int updates 	= 0;
 		
+		requestFocus();
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -87,8 +91,11 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		x++;
-		y++;
+		key.update();
+		if (key.up)    y++;
+		if (key.down)  y--;
+		if (key.right) x--;
+		if (key.left)  x++;
 	}
 
 	public void render() {
