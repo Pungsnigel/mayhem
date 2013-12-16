@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.input.KeyBoard;
+import com.piggy.raingame.levels.Level;
+import com.piggy.raingame.levels.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
 
@@ -26,6 +28,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private boolean running = false;
+	private Level level;
 	private KeyBoard key;
 	
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -40,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 
 		this.frame = new JFrame();
 		this.screen = new Screen(WIDTH, HEIGHT);
+		this.level = new RandomLevel(64, 64);
 		
 		this.key = new KeyBoard();
 		addKeyListener(key);
@@ -83,7 +87,7 @@ public class Game extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				frame.setTitle("Rain | " + "UPS: " + updates +  "FPS:" + frames);
+				frame.setTitle("Piggy powergame | " + "UPS: " + updates +  "FPS:" + frames);
 				updates = frames = 0;
 			}
 		}
@@ -92,10 +96,10 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		key.update();
-		if (key.up)    y++;
-		if (key.down)  y--;
-		if (key.right) x--;
-		if (key.left)  x++;
+		if (key.up)    y--;
+		if (key.down)  y++;
+		if (key.right) x++;
+		if (key.left)  x--;
 	}
 
 	public void render() {
@@ -106,7 +110,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		screen.render(x,y);
+		level.render(x, y, screen);
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
@@ -123,7 +127,6 @@ public class Game extends Canvas implements Runnable {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.frame.setResizable(false);
-		game.frame.setTitle("Rain");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

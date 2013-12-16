@@ -2,13 +2,16 @@ package com.piggy.raingame.graphics;
 
 import java.util.Random;
 
+import com.piggy.raingame.levels.tiles.Tile;
+
 public class Screen {
 	
-	private int width, height;
+	public int width, height;
 	public int[] pixels;
+	public final int MAP_SIZE = 64; 
+	public final int MAP_SIZE_MASK = 64 - 1;
 	
-	public final int MAP_SIZE 		= 64; 
-	public final int MAP_SIZE_MASK	= 64 - 1;
+	public int xOffset, yOffset;
 	
 	public int [] tiles = new int [MAP_SIZE * MAP_SIZE];
 	
@@ -29,15 +32,21 @@ public class Screen {
 			pixels[i] = 0;
 	}
 	
-	public void render(int xOffset, int yOffset) {
-		for (int y = 0; y < height; y++) {
-			int yPix = (y + yOffset) ;
-			if (yPix < 0 || yPix >= height) continue; 
-			for (int x = 0; x < width; x++) {
-				int xPix = x + xOffset;
-				if (xPix < 0 || xPix >= width) continue;
-				pixels[xPix + yPix * width] = Sprite.grass.pixels[(x&15) + (y&15) *Sprite.grass.SIZE];
+	public void renderTile(int xPos, int yPos, Tile tile) {
+		xPos -= xOffset;
+		yPos -= yOffset;
+		for (int y = 0; y < tile.sprite.SIZE; y++) {
+			int ya = y + yPos;
+			for (int x = 0; x < tile.sprite.SIZE; x++) {
+				int xa = x + xPos;
+				if (xa < 0 || xa >= width || ya < 0 || ya >= width) break; 
+				pixels[xa + ya*width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
 			}
 		}
+	}
+	
+	public void setOffset(int xOffset, int yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 }
