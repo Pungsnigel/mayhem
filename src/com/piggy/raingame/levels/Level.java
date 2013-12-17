@@ -38,10 +38,10 @@ public abstract class Level {
 		screen.setOffset(xScroll, yScroll);
 		// FInd corners of screen from player,
 		// Bitshift to convert from pixels to tiles (same as / 16)
-		int x0 = xScroll >> 4;		
-		int x1 = (xScroll + screen.width) >> 4;
-		int y0 = yScroll >> 4;
-		int y1 = (yScroll + screen.height) >> 4;
+		int x0 = xScroll / 16;		
+		int x1 = (xScroll + screen.width + 16) / 16;
+		int y0 = yScroll / 16;
+		int y1 = (yScroll + screen.height + 16) / 16;
 		
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
@@ -51,6 +51,7 @@ public abstract class Level {
 	}
 	
 	public Tile getTile(int x, int y) {
+		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
 		if (tiles[x + y * width] == 0) return Tile.grass;
 		return Tile.voidTile;
 	}
