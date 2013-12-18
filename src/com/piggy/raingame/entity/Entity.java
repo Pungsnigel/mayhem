@@ -5,7 +5,7 @@ import java.util.Random;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.levels.Level;
 
-public abstract class  Entity  {
+public abstract class Entity {
 	
 	public int x,y;
 	private boolean removed = false;
