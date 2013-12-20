@@ -2,6 +2,7 @@ package com.piggy.raingame.graphics;
 
 import java.util.Random;
 
+import com.piggy.raingame.entity.mob.Player;
 import com.piggy.raingame.levels.tiles.Tile;
 
 public class Screen {
@@ -35,13 +36,29 @@ public class Screen {
 	public void renderTile(int xPos, int yPos, Tile tile) {
 		xPos -= xOffset;
 		yPos -= yOffset;
-		for (int y = 0; y < tile.sprite.SIZE; y++) {
+		for (int y = 0; y < tile.sprite.HEIGHT; y++) {
 			int ya = y + yPos;
-			for (int x = 0; x < tile.sprite.SIZE; x++) {
+			for (int x = 0; x < tile.sprite.WIDTH; x++) {
 				int xa = x + xPos;
-				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < -tile.sprite.WIDTH || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				pixels[xa + ya*width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+				pixels[xa + ya*width] = tile.sprite.pixels[x + y * tile.sprite.WIDTH];
+			}
+		}
+	}
+	
+	public void renderPlayer(int xPos, int yPos, Sprite sprite) {
+		xPos -= xOffset;
+		yPos -= yOffset;
+		for (int y = 0; y < sprite.HEIGHT; y++) {
+			int ya = y + yPos;
+			for (int x = 0; x < sprite.WIDTH; x++) {
+				int xa = x + xPos;
+				if (xa < -16 || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = sprite.pixels[x + y * sprite.WIDTH];
+				if (col != 0xFF8C11FF)
+					pixels[xa + ya*width] = col;
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.piggy.raingame.entity.mob.Player;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.input.KeyBoard;
 import com.piggy.raingame.levels.Level;
@@ -29,13 +30,12 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private boolean running = false;
 	private Level level;
+	private Player player;
 	private KeyBoard key;
 	
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private int [] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	private Screen screen;
-	
-	private int x = 0, y = 0;
 	
 	public Game() {
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
@@ -43,9 +43,11 @@ public class Game extends Canvas implements Runnable {
 
 		this.frame = new JFrame();
 		this.screen = new Screen(WIDTH, HEIGHT);
+		this.key = new KeyBoard();
 		this.level = new RandomLevel(64, 64);
 		
-		this.key = new KeyBoard();
+		this.player = new Player(key);
+		
 		addKeyListener(key);
 	}
 
@@ -96,10 +98,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		key.update();
-		if (key.up)    y--;
-		if (key.down)  y++;
-		if (key.right) x++;
-		if (key.left)  x--;
+		this.player.update();
 	}
 
 	public void render() {
@@ -110,7 +109,10 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		screen.clear();
-		level.render(x, y, screen);
+		int xScroll = player.x -screen.width / 2;
+		int yScroll = player.y - screen.height / 2;
+		level.render(xScroll, yScroll, screen);
+		player.render(screen);
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
