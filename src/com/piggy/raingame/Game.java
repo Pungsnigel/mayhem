@@ -89,7 +89,7 @@ public class Game extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				frame.setTitle("Piggy powergame | " + "UPS: " + updates +  "FPS:" + frames);
+				frame.setTitle("Marina MAYHAM | " + "UPS: " + updates +  "FPS:" + frames);
 				updates = frames = 0;
 			}
 		}

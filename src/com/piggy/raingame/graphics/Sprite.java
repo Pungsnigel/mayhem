@@ -10,7 +10,7 @@ public class Sprite {
 	public static Sprite grass = new Sprite(16, 16, 0, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 16, 0x1B87E0);
 	
-	public static Sprite player_down 	= new Sprite(16, 32, 0, 4, SpriteSheet.tiles);
+	public static Sprite player_down 	= new Sprite(16, 16, 0, 31, SpriteSheet.chars);
 	public static Sprite player_up 		= new Sprite(16, 32, 4, 4, SpriteSheet.tiles);
 	public static Sprite player_left 	= new Sprite(16, 32, 2, 4, SpriteSheet.tiles);
 	public static Sprite player_right 	= new Sprite(16, 32, 6, 4, SpriteSheet.tiles);
