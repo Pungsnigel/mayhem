@@ -6,6 +6,8 @@ import com.piggy.raingame.graphics.Sprite;
 public class Tile {
 	
 	public static Tile grass = new GrassTile(Sprite.grass);
+	public static Tile trunk = new TrunkTile(Sprite.trunk);
+	public static Tile bigTrunk = new BigTrunkTile(Sprite.BigTrunk);
 	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
 	
 	public int x,y;

@@ -8,15 +8,17 @@ public class Sprite {
 	private SpriteSheet sheet;
 	
 	public static Sprite grass = new Sprite(16, 16, 0, 0, SpriteSheet.tiles);
+	public static Sprite trunk = new Sprite (16, 16, 1, 0, SpriteSheet.tiles);
+	public static Sprite BigTrunk = new Sprite (32, 48, 3, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 16, 0x1B87E0);
 	
 	public static Sprite player_down1 	= new Sprite(16, 16, 0, 31, SpriteSheet.chars);
 	public static Sprite player_down2 	= new Sprite(16, 16, 1, 31, SpriteSheet.chars);
 	public static Sprite player_down3 	= new Sprite(16, 16, 2, 31, SpriteSheet.chars);
 	
-	public static Sprite player_up1 		= new Sprite(16, 16, 0, 30, SpriteSheet.chars);
-	public static Sprite player_up2 		= new Sprite(16, 16, 1, 30, SpriteSheet.chars);
-	public static Sprite player_up3 		= new Sprite(16, 16, 2, 30, SpriteSheet.chars);
+	public static Sprite player_up1 	= new Sprite(16, 16, 0, 30, SpriteSheet.chars);
+	public static Sprite player_up2 	= new Sprite(16, 16, 1, 30, SpriteSheet.chars);
+	public static Sprite player_up3 	= new Sprite(16, 16, 2, 30, SpriteSheet.chars);
 	
 	public static Sprite player_left 	= new Sprite(16, 32, 2, 4, SpriteSheet.tiles);
 	public static Sprite player_right 	= new Sprite(16, 32, 6, 4, SpriteSheet.tiles);
