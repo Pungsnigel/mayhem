@@ -17,9 +17,9 @@ public class Player extends Mob {
 		this.input = input;
 		this.x = x;
 		this.y = y;
-		this.sprite = Sprite.player_down;
+		this.sprite = Sprite.player_down1;
 	}
-	
+		
 	@Override
 	public void update() {
 		int dx = 0, dy = 0;
@@ -42,12 +42,36 @@ public class Player extends Mob {
 	
 	public void render(Screen screen) {
 		boolean xFlip = false, yFlip = false;
-		if (dir == 0) sprite = Sprite.player_up;
+		if (dir == 0) {
+			sprite = Sprite.player_up1;
+			
+			if (animCount % 40 > 10) {
+				sprite = Sprite.player_up2;
+				if (animCount % 40 > 20) {
+					sprite = Sprite.player_up1;
+					if (animCount % 40 > 30) {
+						sprite = Sprite.player_up3;
+						
+					}
+				}
+			}
+				
+		}
 		if (dir == 1) sprite = Sprite.player_right;
 		if (dir == 2) {
-			sprite = Sprite.player_down;
-			if (animCount % 40 > 20) 
-				xFlip = true;
+			sprite = Sprite.player_down1;
+			
+			if (animCount % 40 > 10) {
+				sprite = Sprite.player_down2;
+				if (animCount % 40 > 20) {
+					sprite = Sprite.player_down1;
+					if (animCount % 40 > 30) {
+						sprite = Sprite.player_down3;
+						
+					}
+				}
+			}
+				
 		}
 		if (dir == 3) sprite = Sprite.player_left;
 		screen.renderPlayer(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
