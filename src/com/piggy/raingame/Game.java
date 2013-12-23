@@ -16,6 +16,7 @@ import com.piggy.raingame.input.KeyBoard;
 import com.piggy.raingame.levels.Level;
 import com.piggy.raingame.levels.RandomLevel;
 import com.piggy.raingame.levels.SpawnLevel;
+import com.piggy.raingame.levels.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 
@@ -45,9 +46,9 @@ public class Game extends Canvas implements Runnable {
 		this.frame = new JFrame();
 		this.screen = new Screen(WIDTH, HEIGHT);
 		this.key = new KeyBoard();
-		this.level = new SpawnLevel("/textures/LvL.png");
-		
-		this.player = new Player(key);
+		this.level = Level.example;
+		TileCoordinate spawn = new TileCoordinate(10, 10);
+		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		
 		addKeyListener(key);
 	}

@@ -5,7 +5,9 @@ import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.levels.tiles.Tile;
 import com.piggy.raingame.levels.tiles.Tiles;
 
-public abstract class Level {
+public class Level {
+	
+	public static SpawnLevel example = new SpawnLevel("/levels/LvL.png");
 	
 	private Random rand = new Random();
 	protected int width, height;
