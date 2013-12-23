@@ -15,6 +15,7 @@ import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.input.KeyBoard;
 import com.piggy.raingame.levels.Level;
 import com.piggy.raingame.levels.RandomLevel;
+import com.piggy.raingame.levels.SpawnLevel;
 
 public class Game extends Canvas implements Runnable {
 
@@ -44,7 +45,7 @@ public class Game extends Canvas implements Runnable {
 		this.frame = new JFrame();
 		this.screen = new Screen(WIDTH, HEIGHT);
 		this.key = new KeyBoard();
-		this.level = new RandomLevel(64, 64);
+		this.level = new SpawnLevel("/textures/LvL.png");
 		
 		this.player = new Player(key);
 		

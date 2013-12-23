@@ -10,7 +10,7 @@ public class Player extends Mob {
 	private int animCount = 0;
 	
 	public Player(KeyBoard input) {
-		this(300, 300, input);
+		this(20, 20, input);
 	}
 	
 	public Player(int x, int y, KeyBoard input) {
@@ -57,7 +57,7 @@ public class Player extends Mob {
 			}
 				
 		}
-		if (dir == 1) sprite = Sprite.player_right;
+		if (dir == 1) sprite = Sprite.BigTrunk;
 		if (dir == 2) {
 			sprite = Sprite.player_down1;
 			

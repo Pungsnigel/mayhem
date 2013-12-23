@@ -8,7 +8,9 @@ public class Sprite {
 	private SpriteSheet sheet;
 	
 	public static Sprite grass = new Sprite(16, 16, 0, 0, SpriteSheet.tiles);
+	public static Sprite flowerGrass = new Sprite (16, 16, 2, 0, SpriteSheet.tiles);
 	public static Sprite trunk = new Sprite (16, 16, 1, 0, SpriteSheet.tiles);
+	public static Sprite water = new Sprite (16, 16, 5, 0, SpriteSheet.tiles);
 	public static Sprite BigTrunk = new Sprite (32, 48, 3, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 16, 0x1B87E0);
 	
@@ -20,15 +22,15 @@ public class Sprite {
 	public static Sprite player_up2 	= new Sprite(16, 16, 1, 30, SpriteSheet.chars);
 	public static Sprite player_up3 	= new Sprite(16, 16, 2, 30, SpriteSheet.chars);
 	
-	public static Sprite player_left 	= new Sprite(16, 32, 2, 4, SpriteSheet.tiles);
-	public static Sprite player_right 	= new Sprite(16, 32, 6, 4, SpriteSheet.tiles);
+	public static Sprite player_left 	= new Sprite(16, 32, 2, 8, SpriteSheet.tiles);
+	public static Sprite player_right 	= new Sprite(16, 32, 6, 8, SpriteSheet.tiles);
 	
 	public Sprite (int width, int height, int x, int y, SpriteSheet sheet) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		pixels = new int [WIDTH * HEIGHT];
-		this.x = x * WIDTH;			// Define what coordinate in the spritesheet
-		this.y = y * HEIGHT;
+		this.x = x * 16;			// Define what coordinate in the spritesheet
+		this.y = y * 16;
 		this.sheet = sheet;
 		load();
 	}
