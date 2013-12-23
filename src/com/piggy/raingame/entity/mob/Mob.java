@@ -30,7 +30,16 @@ public abstract class Mob extends Entity{
 	}
 	
 	private boolean collision(int dx, int dy) {
-		boolean isColliding = (level.getTile( (x + dx) / 16, (y + dy) / 16).collidable());
+		boolean isColliding = false;
+		// Check collision for every corner
+		for (int c = 0; c < 4; c++) {
+			int xt = ((x + dx) + c % 2 * 10 + 2) / 16;
+			int yt = ((y + dy) + c / 2 * 10 - 2) / 16;
+			if (level.getTile(xt, yt).collidable()) {
+				isColliding = true;
+			}
+		}
+				
 		return isColliding;
 	}
 	

@@ -57,7 +57,7 @@ public class Player extends Mob {
 			}
 				
 		}
-		if (dir == 1) sprite = Sprite.BigTrunk;
+		if (dir == 1) sprite = Sprite.player_down1;
 		if (dir == 2) {
 			sprite = Sprite.player_down1;
 			
