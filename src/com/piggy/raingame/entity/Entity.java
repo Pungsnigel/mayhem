@@ -28,4 +28,8 @@ public abstract class Entity {
 		return this.removed;
 	}
 	
+	public void init(Level level) {
+		this.level = level;
+	}
+	
 }

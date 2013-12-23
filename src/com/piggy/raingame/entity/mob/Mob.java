@@ -15,7 +15,7 @@ public abstract class Mob extends Entity{
 		if (dy > 0) dir = 2;
 		if (dy < 0) dir = 0;
 		
-		if(!collision()) {
+		if(!collision(dx, dy)) {
 			this.x += dx;
 			this.y += dy;
 		}
@@ -29,8 +29,9 @@ public abstract class Mob extends Entity{
 		
 	}
 	
-	private boolean collision() {
-		return false;
+	private boolean collision(int dx, int dy) {
+		boolean isColliding = (level.getTile( (x + dx) / 16, (y + dy) / 16).collidable());
+		return isColliding;
 	}
 	
 }
