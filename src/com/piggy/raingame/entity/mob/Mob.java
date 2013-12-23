@@ -15,10 +15,10 @@ public abstract class Mob extends Entity{
 		if (dy > 0) dir = 2;
 		if (dy < 0) dir = 0;
 		
-		if(!collision(dx, dy)) {
+		if(!collision(dx, 0)) 
 			this.x += dx;
+		if(!collision(0, dy))
 			this.y += dy;
-		}
 	}
 	
 	public void update() {
