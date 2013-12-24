@@ -10,6 +10,7 @@ public class Tiles {
 	public static Tile bigTrunk = new BigTrunkTile(Sprite.BigTrunk);
 	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
 	public static Tile water    = new WaterTile(Sprite.water);
+	public static Tile tiled_floor = new GrassTile(Sprite.tiled_floor);
 	
 	public static final int grassColor = 0xff35ff14;
 	public static final int waterColor = 0xff145cff;

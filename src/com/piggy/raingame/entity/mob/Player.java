@@ -1,6 +1,8 @@
 package com.piggy.raingame.entity.mob;
 
 import com.piggy.raingame.Game;
+import com.piggy.raingame.entity.projectile.CoffeeCup;
+import com.piggy.raingame.entity.projectile.Projectile;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.graphics.Sprite;
 import com.piggy.raingame.input.KeyBoard;
@@ -10,6 +12,7 @@ public class Player extends Mob {
 
 	private KeyBoard input;
 	private int animCount = 0;
+	private double cooldown = 0;;
 	
 	public Player(KeyBoard input) {
 		this(20, 20, input);
@@ -18,12 +21,13 @@ public class Player extends Mob {
 	public Player(int x, int y, KeyBoard input) {
 		this.input = input;
 		this.x = x;
-		this.y = y;
+		this.y = y;	
 		this.sprite = Sprite.player_down1;
 	}
 		
 	@Override
 	public void update() {
+		if (cooldown != 0) cooldown--;
 		int dx = 0, dy = 0;
 		if (input.up) 	 dy--;
 		if (input.down)  dy++;
@@ -39,8 +43,7 @@ public class Player extends Mob {
 				animCount = 0;
 			}
 		}
-		
-		if (Mouse.getB() == 1) 
+		if (Mouse.getB() == 1 && cooldown <= 0) 
 			calcAndFireProj();
 	}
 	
@@ -51,6 +54,7 @@ public class Player extends Mob {
 		double dy = Mouse.getY() - midY;
 		double dir = Math.atan2(dy, dx);
 		shoot(x, y, dir);
+		cooldown = CoffeeCup.FIRERATE;
 	}
 
 	public void render(Screen screen) {
@@ -87,7 +91,7 @@ public class Player extends Mob {
 				
 		}
 		if (dir == 3) sprite = Sprite.player_left;
-		screen.renderPlayer(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
+		screen.renderEntity(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
 	}
 	
 }

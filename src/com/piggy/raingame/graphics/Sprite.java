@@ -12,6 +12,7 @@ public class Sprite {
 	public static Sprite trunk = new Sprite (16, 16, 1, 0, SpriteSheet.tiles);
 	public static Sprite water = new Sprite (16, 16, 5, 0, SpriteSheet.tiles);
 	public static Sprite BigTrunk = new Sprite (32, 48, 3, 0, SpriteSheet.tiles);
+	public static Sprite tiled_floor = new Sprite (16, 16, 7, 0, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 16, 0x1B87E0);
 	
 	public static Sprite player_down1 	= new Sprite(16, 16, 0, 31, SpriteSheet.chars);

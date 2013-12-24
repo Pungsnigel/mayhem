@@ -39,11 +39,14 @@ public class Level {
 		loadLevel(path);
 		generateLevel();
 	}
-	
 
 	public void update() {
-		for (Entity e : entities)
+		for (int i = 0; i < entities.size(); i++) {
+			Entity e = entities.get(i);
 			e.update();
+			if (e.isRemoved())
+				entities.remove(i);
+		}
 	}
 	
 	public void render(int xScroll, int yScroll, Screen screen) {
@@ -77,6 +80,10 @@ public class Level {
 	
 	public void add(Entity e) {
 		entities.add(e);
+	}
+	
+	public void remove(Entity e) {
+		entities.remove(e);
 	}
 	
 	/* Private methods */

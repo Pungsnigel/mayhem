@@ -1,5 +1,8 @@
 package com.piggy.raingame.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.piggy.raingame.entity.Entity;
 import com.piggy.raingame.entity.projectile.CoffeeCup;
 import com.piggy.raingame.entity.projectile.Projectile;
@@ -24,8 +27,8 @@ public abstract class Mob extends Entity{
 	}
 	
 	public void update() {
-		
 	}
+
 	
 	public void render() {
 		
@@ -46,9 +49,7 @@ public abstract class Mob extends Entity{
 	}
 	
 	protected void shoot(int x, int y, double dir) {
-		Projectile p = new CoffeeCup(x, y, dir);
-		projectiles.add(p);
-		level.add(p);
+		level.add(new CoffeeCup(x, y, dir));
 	}
 	
 }

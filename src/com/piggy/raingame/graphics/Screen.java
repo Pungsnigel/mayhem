@@ -47,23 +47,7 @@ public class Screen {
 		}
 	}
 	
-	public void renderEntity(int xPos, int yPos, Sprite tile) {
-		xPos -= xOffset;
-		yPos -= yOffset;
-		for (int y = 0; y < tile.HEIGHT; y++) {
-			int ya = y + yPos;
-			for (int x = 0; x < tile.WIDTH; x++) {
-				int xa = x + xPos;
-				if (xa < -tile.WIDTH || xa >= width || ya < 0 || ya >= height) break;
-				if (xa < 0) xa = 0;
-				int col = tile.pixels[x + y * tile.WIDTH];
-				if (col != 0xFF8C11FF)
-					pixels[xa + ya*width] = col;
-			}
-		}
-	}
-	
-	public void renderPlayer(int xPos, int yPos, Sprite sprite, boolean xFlip, boolean yFlip) {
+	public void renderEntity(int xPos, int yPos, Sprite sprite, boolean xFlip, boolean yFlip) {
 		xPos -= xOffset;
 		yPos -= yOffset;
 		for (int y = 0; y < sprite.HEIGHT; y++) {
