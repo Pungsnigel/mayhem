@@ -9,6 +9,7 @@ public class SpriteSheet {
 	
 	public static SpriteSheet tiles = new SpriteSheet("/textures/spritesheet.png", 256);
 	public static SpriteSheet chars = new SpriteSheet("/textures/character_sprites.png", 512);
+	public static SpriteSheet projectiles = new SpriteSheet("/textures/projectiles.png", 64);
 	
 	private String path;
 	public final int SIZE;

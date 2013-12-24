@@ -25,6 +25,8 @@ public class Sprite {
 	public static Sprite player_left 	= new Sprite(16, 32, 2, 8, SpriteSheet.tiles);
 	public static Sprite player_right 	= new Sprite(16, 32, 6, 8, SpriteSheet.tiles);
 	
+	public static Sprite proj_coffe    = new Sprite(16, 16, 0, 0, SpriteSheet.projectiles);
+	
 	public Sprite (int width, int height, int x, int y, SpriteSheet sheet) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
