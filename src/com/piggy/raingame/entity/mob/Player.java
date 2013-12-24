@@ -1,8 +1,10 @@
 package com.piggy.raingame.entity.mob;
 
+import com.piggy.raingame.Game;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.graphics.Sprite;
 import com.piggy.raingame.input.KeyBoard;
+import com.piggy.raingame.input.Mouse;
 
 public class Player extends Mob {
 
@@ -27,7 +29,7 @@ public class Player extends Mob {
 		if (input.down)  dy++;
 		if (input.left)  dx--;
 		if (input.right) dx++;
-
+		
 		boolean walking = (dx != 0 || dy != 0);
 		if (walking) {
 			move(dx,dy);
@@ -37,9 +39,20 @@ public class Player extends Mob {
 				animCount = 0;
 			}
 		}
-			
+		
+		if (Mouse.getB() == 1) 
+			calcAndFireProj();
 	}
 	
+	private void calcAndFireProj() {
+		int midX = Game.getWindowWidth() / 2;
+		int midY = Game.getWindowHeight() / 2;
+		double dx = Mouse.getX() - midX;
+		double dy = Mouse.getY() - midY;
+		double dir = Math.atan2(dy, dx);
+		shoot(x, y, dir);
+	}
+
 	public void render(Screen screen) {
 		boolean xFlip = false, yFlip = false;
 		if (dir == 0) {

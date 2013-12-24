@@ -13,9 +13,8 @@ import javax.swing.JFrame;
 import com.piggy.raingame.entity.mob.Player;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.input.KeyBoard;
+import com.piggy.raingame.input.Mouse;
 import com.piggy.raingame.levels.Level;
-import com.piggy.raingame.levels.RandomLevel;
-import com.piggy.raingame.levels.SpawnLevel;
 import com.piggy.raingame.levels.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
@@ -24,9 +23,9 @@ public class Game extends Canvas implements Runnable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 300;
-	public static final int HEIGHT = WIDTH / 16 * 9;
-	public static final int SCALE = 3;
+	private static final int WIDTH = 300;
+	private static final int HEIGHT = WIDTH / 16 * 9;
+	private static final int SCALE = 3;
 
 	private Thread thread;
 	private JFrame frame;
@@ -51,7 +50,10 @@ public class Game extends Canvas implements Runnable {
 		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		player.init(level);
 		
+		Mouse mouse = new Mouse();
 		addKeyListener(key);
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 
 	public synchronized void start() {
@@ -100,8 +102,9 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void update() {
-		key.update();
+		this.key.update();
 		this.player.update();
+		this.level.update();
 	}
 
 	public void render() {
@@ -127,6 +130,14 @@ public class Game extends Canvas implements Runnable {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose(); // Cleanup graphics after drawing
 		bs.show(); // Make next buffer visable
+	}
+	
+	public static int getWindowWidth() {
+		return WIDTH * SCALE;
+	}
+	
+	public static int getWindowHeight() {
+		return HEIGHT * SCALE;
 	}
 
 	public static void main(String[] args) {

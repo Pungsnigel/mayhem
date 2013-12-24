@@ -1,6 +1,9 @@
 package com.piggy.raingame.levels;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import com.piggy.raingame.entity.Entity;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.levels.tiles.Tile;
 import com.piggy.raingame.levels.tiles.Tiles;
@@ -13,6 +16,8 @@ public class Level {
 	protected int width, height;
 	protected int [] tiles;
 	protected int [] tileInts;
+	
+	private List <Entity> entities = new ArrayList<Entity>();
 	
 	
 	/**
@@ -37,7 +42,8 @@ public class Level {
 	
 
 	public void update() {
-		
+		for (Entity e : entities)
+			e.update();
 	}
 	
 	public void render(int xScroll, int yScroll, Screen screen) {
@@ -48,11 +54,14 @@ public class Level {
 		int x1 = (xScroll + screen.width + 16) / 16;
 		int y0 = yScroll / 16;
 		int y1 = (yScroll + screen.height + 16) / 16;
-		int index;
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 				getTile(x,y).render(x, y, screen);
 			}	
+		}
+		
+		for (Entity e : entities) {
+			e.render(screen);
 		}
 	}
 	
@@ -64,6 +73,10 @@ public class Level {
 		if (tiles[index] == Tiles.trunkColor)  return Tiles.trunk;
 		if (tiles[index] == Tiles.flowerColor) return Tiles.flowerGrass;
 		return Tiles.voidTile;
+	}
+	
+	public void add(Entity e) {
+		entities.add(e);
 	}
 	
 	/* Private methods */

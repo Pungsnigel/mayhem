@@ -1,6 +1,8 @@
 package com.piggy.raingame.entity.mob;
 
 import com.piggy.raingame.entity.Entity;
+import com.piggy.raingame.entity.projectile.CoffeeCup;
+import com.piggy.raingame.entity.projectile.Projectile;
 import com.piggy.raingame.graphics.Sprite;
 
 public abstract class Mob extends Entity{
@@ -41,6 +43,12 @@ public abstract class Mob extends Entity{
 		}
 				
 		return isColliding;
+	}
+	
+	protected void shoot(int x, int y, double dir) {
+		Projectile p = new CoffeeCup(x, y, dir);
+		projectiles.add(p);
+		level.add(p);
 	}
 	
 }
