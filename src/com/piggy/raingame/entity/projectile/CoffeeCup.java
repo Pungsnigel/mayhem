@@ -10,7 +10,7 @@ public class CoffeeCup extends Projectile {
 	public static final int FIRERATE = 15;
 
 	public CoffeeCup(int x, int y, double dir, Mob owner) {
-		super(x, y, 15, 15, dir, owner);
+		super(x, y, 12, 8, dir, owner);
 		range = Projectile.rand.nextInt(60) + 80;
 		speed = 2;
 		dmg = 20;
@@ -38,8 +38,7 @@ public class CoffeeCup extends Projectile {
 	}
 	
 	public void didCollide(Entity other){
-		System.out.println("Did collide!");
-		if (!(other instanceof Mob && other == this.owner))
+		if (!(other instanceof Mob && other == this.owner || other instanceof Projectile))
 			remove();
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -13,6 +12,7 @@ import javax.swing.JFrame;
 
 import com.piggy.raingame.entity.mob.Player;
 import com.piggy.raingame.graphics.Screen;
+import com.piggy.raingame.graphics.Sprite;
 import com.piggy.raingame.input.KeyBoard;
 import com.piggy.raingame.input.Mouse;
 import com.piggy.raingame.levels.Level;
@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable {
 		this.screen = new Screen(WIDTH, HEIGHT);
 		this.key = new KeyBoard();
 		this.level = Level.example;
-		TileCoordinate spawn = new TileCoordinate(50, 50);
+		TileCoordinate spawn = new TileCoordinate(15, 15);
 		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		player.init(level);
 		this.level.add(player);
@@ -119,18 +119,19 @@ public class Game extends Canvas implements Runnable {
 		int xScroll = player.x -screen.width / 2;
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
-		player.render(screen);
-		
-		for (int i = 0; i < pixels.length; i++) {
-			pixels[i] = screen.pixels[i];
-		}
+
+		/*
+		 *  Take everything rendered onto the screens pixel-array and put it in our image
+		 *  Array is big enough to motivate use of arraycopy for performance.
+		 */
+		System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 		
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.dispose(); // Cleanup graphics after drawing
-		bs.show(); // Make next buffer visable
+		g.dispose(); 		// Cleanup graphics after drawing
+		bs.show(); 			// Make next buffer visable
 	}
 	
 	public static int getWindowWidth() {

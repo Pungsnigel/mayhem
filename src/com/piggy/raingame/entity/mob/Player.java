@@ -26,7 +26,6 @@ public class Player extends Mob {
 		this.sprite = Sprite.player_down1;
 	}
 	
-		
 	@Override
 	public void update() {
 		if (cooldown != 0) cooldown--;
