@@ -63,8 +63,6 @@ public abstract class Projectile extends Entity {
 	
 	public void remove () {
 		super.remove();
-		Particle p = new Particle((int)this.x, (int)this.y, 10, 30);
-		level.add(p);
 	}
 	
 	/**

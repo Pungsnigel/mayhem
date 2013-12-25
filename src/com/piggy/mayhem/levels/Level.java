@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.piggy.mayhem.entity.Entity;
-import com.piggy.mayhem.entity.projectile.CoffeeCup;
+import com.piggy.mayhem.entity.particle.Particle;
+import com.piggy.mayhem.entity.projectile.Projectile;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.levels.tiles.Tile;
 import com.piggy.mayhem.levels.tiles.Tiles;
@@ -19,6 +20,7 @@ public class Level {
 	protected int [] tileInts;
 	
 	private List <Entity> entities = new ArrayList<Entity>();
+	private List <Particle> particles = new ArrayList<Particle>();
 	
 	/**
 	 * Create a random level of given size
@@ -41,17 +43,27 @@ public class Level {
 	}
 
 	public void update() {
-		for (int i = 0; i < entities.size(); i++) {
+		int i;
+		for (i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.update();
+		}
+		for (i = 0; i < particles.size(); i++) {
+			Particle p = particles.get(i);
+			p.update();
 		}
 		clear();
 	}
 	
 	public void clear() {
-		for (int i = 0; i < entities.size(); i++) {
+		int i;
+		for (i = 0; i < entities.size(); i++) {
 			if (entities.get(i).isRemoved())
 				entities.remove(i);
+		}
+		for (i = 0; i < particles.size(); i++) {
+			if (particles.get(i).isRemoved())
+				particles.remove(i);
 		}
 	}
 	
@@ -69,9 +81,10 @@ public class Level {
 			}	
 		}
 		
-		for (Entity e : entities) {
+		for (Entity e : entities) 
 			e.render(screen);
-		}
+		for (Particle p : particles) 
+			p.render(screen);
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -86,11 +99,18 @@ public class Level {
 	
 	public void add(Entity e) {
 		e.init(this);
-		entities.add(e);
+		if (e instanceof Particle) {
+			particles.add((Particle) e);
+		} else {
+			entities.add(e);
+		}
 	}
 	
 	public void remove(Entity e) {
-		entities.remove(e);
+		if (e instanceof Particle)
+			particles.remove(e);
+		else
+			entities.remove(e);
 	}
 	
 	/**

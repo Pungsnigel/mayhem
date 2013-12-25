@@ -2,6 +2,7 @@ package com.piggy.mayhem.entity.projectile;
 
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.mob.Mob;
+import com.piggy.mayhem.entity.spawner.Spawner;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.graphics.Sprite;
 
@@ -33,12 +34,18 @@ public class CoffeeCup extends Projectile {
 		this.level.checkCollisions(this);
 	}
 	
+	public void remove() {
+		super.remove();
+		level.add(new Spawner((int)x, (int)y, Spawner.Type.PARTICLE, 30));
+	}
+	
 	public void render(Screen screen) {
 		screen.renderEntity((int)x - 8, (int)y - 16, sprite, false, false);
 	}
 	
 	public void didCollide(Entity other){
-		if (!(other instanceof Mob && other == this.owner || other instanceof Projectile))
+		if (!(other instanceof Mob && other == this.owner || other instanceof Projectile)) {
 			remove();
+		}
 	}
 }
