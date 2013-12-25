@@ -22,7 +22,7 @@ public class ParticleSpawner extends Spawner{
 	
 	public void init(Level level) {
 		for (int i = 0; i < amount; i++) {
-			level.add(new Particle(x, y, life, color));
+			level.add(new Particle(x, y, life + random.nextInt(20), color));
 		}
 	}
 
