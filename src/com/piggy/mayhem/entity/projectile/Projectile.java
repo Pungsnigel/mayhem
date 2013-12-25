@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.mob.Mob;
+import com.piggy.mayhem.entity.particle.Particle;
 import com.piggy.mayhem.graphics.Sprite;
 import com.piggy.mayhem.levels.tiles.Tile.TileType;
 
@@ -58,6 +59,12 @@ public abstract class Projectile extends Entity {
 			isColliding = true;
 				
 		return isColliding;
+	}
+	
+	public void remove () {
+		super.remove();
+		Particle p = new Particle((int)this.x, (int)this.y, 10, 30);
+		level.add(p);
 	}
 	
 	/**
