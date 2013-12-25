@@ -11,7 +11,7 @@ public class Particle extends Entity{
 	private Sprite sprite;
 	
 	private int ticks;
-	
+	protected double xx,yy,xa, ya;
 	
 	private List<Particle> particles = new ArrayList<Particle>();
 	
@@ -19,7 +19,13 @@ public class Particle extends Entity{
 		sprite = new Sprite(2,2, 0xFF00FF);
 		this.x = x;
 		this.y = y;
+		this.xx = x; 			// Need double precision in calculations
+		this.yy = y;
 		this.ticks = ticks;
+		
+		this.xa = random.nextGaussian();
+		this.ya = random.nextGaussian();
+				
 	}
 	
 	public Particle (int x, int y, int ticks, int amount ) {
@@ -31,11 +37,14 @@ public class Particle extends Entity{
 	}
 	
 	public void update () {
+		this.xx += this.xa;
+		this.yy += this.ya;
 	}
 	
 	public void render(Screen screen) {
+		screen.renderSprite((int)xx, (int)yy, sprite, true);
 	}
-
+	
 	@Override
 	public void didCollide(Entity e) {
 	}
