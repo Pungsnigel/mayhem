@@ -1,8 +1,5 @@
 package com.piggy.mayhem.entity.particle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.graphics.Sprite;
@@ -13,7 +10,6 @@ public class Particle extends Entity{
 	private int ticks;
 	protected double xx,yy,xa, ya;
 	
-	private List<Particle> particles = new ArrayList<Particle>();
 	
 	public Particle (int x, int y, int ticks) {
 		sprite = new Sprite(2,2, 0xFF00FF);
@@ -26,14 +22,6 @@ public class Particle extends Entity{
 		this.xa = random.nextGaussian();
 		this.ya = random.nextGaussian();
 				
-	}
-	
-	public Particle (int x, int y, int ticks, int amount ) {
-		this(x, y, ticks);
-		for (int i = 0; i < amount - 1; i++) {
-			particles.add(new Particle(x, y, ticks));
-		}
-		particles.add(this);
 	}
 	
 	public void update () {
