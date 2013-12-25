@@ -5,8 +5,8 @@ import com.piggy.raingame.graphics.Sprite;
 
 public class GrassTile extends Tile{
 	
-	public GrassTile(Sprite sprite) {
-		super(sprite);
+	public GrassTile(Sprite sprite, TileType type) {
+		super(sprite, type);
 	}
 
 	@Override

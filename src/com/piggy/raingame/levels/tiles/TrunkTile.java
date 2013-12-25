@@ -5,8 +5,8 @@ import com.piggy.raingame.graphics.Sprite;
 
 public class TrunkTile extends Tile{
 	
-	public TrunkTile(Sprite sprite) {
-		super(sprite);
+	public TrunkTile(Sprite sprite, TileType type) {
+		super(sprite, type);
 	}
 
 	@Override

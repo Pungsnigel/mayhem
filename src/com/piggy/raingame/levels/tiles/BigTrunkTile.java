@@ -5,8 +5,8 @@ import com.piggy.raingame.graphics.Sprite;
 
 public class BigTrunkTile extends Tile{
 
-	public BigTrunkTile(Sprite sprite) {
-		super(sprite);
+	public BigTrunkTile(Sprite sprite, TileType type) {
+		super(sprite, type);
 	}
 	
 	@Override

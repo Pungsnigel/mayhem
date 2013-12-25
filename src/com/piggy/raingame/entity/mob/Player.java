@@ -1,6 +1,8 @@
 package com.piggy.raingame.entity.mob;
 
+
 import com.piggy.raingame.Game;
+import com.piggy.raingame.entity.Entity;
 import com.piggy.raingame.entity.projectile.CoffeeCup;
 import com.piggy.raingame.entity.projectile.Projectile;
 import com.piggy.raingame.graphics.Screen;
@@ -19,11 +21,11 @@ public class Player extends Mob {
 	}
 	
 	public Player(int x, int y, KeyBoard input) {
+		super(x,y, 16, 8);
 		this.input = input;
-		this.x = x;
-		this.y = y;	
 		this.sprite = Sprite.player_down1;
 	}
+	
 		
 	@Override
 	public void update() {
@@ -92,6 +94,13 @@ public class Player extends Mob {
 		}
 		if (dir == 3) sprite = Sprite.player_left;
 		screen.renderEntity(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
+	}
+	
+	public void didCollide(Entity other){
+		if (!(other instanceof Projectile)) {
+			x = lastX;
+			y = lastY;
+		}
 	}
 	
 }

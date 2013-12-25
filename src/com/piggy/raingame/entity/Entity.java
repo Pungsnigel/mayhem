@@ -1,5 +1,6 @@
 package com.piggy.raingame.entity;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import com.piggy.raingame.graphics.Screen;
@@ -7,18 +8,29 @@ import com.piggy.raingame.levels.Level;
 
 public abstract class Entity {
 	
-	public int x,y;
+	public int x,y, width, height;
 	private boolean removed = false;
 	protected Level level;
 	protected final Random random = new Random();
-
+	
+	/**
+	 * Calculates a collision box for the entity.
+	 * @return
+	 */
+	public Rectangle getCollisionBox() {
+		return new Rectangle(x, y, width, height);
+	}
+	
+	public boolean isColliding (Entity other) {
+		if (other == this) return false;
+		return this.getCollisionBox().intersects(other.getCollisionBox());
+	}
 	
 	public void update () {
 		
 	}
 	
 	public void render(Screen screen) {
-		
 	}
 	
 	public void remove () {
@@ -32,5 +44,7 @@ public abstract class Entity {
 	public void init(Level level) {
 		this.level = level;
 	}
+	
+	public abstract void didCollide(Entity e);
 	
 }

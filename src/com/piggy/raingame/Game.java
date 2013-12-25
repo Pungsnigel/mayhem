@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -46,9 +47,10 @@ public class Game extends Canvas implements Runnable {
 		this.screen = new Screen(WIDTH, HEIGHT);
 		this.key = new KeyBoard();
 		this.level = Level.example;
-		TileCoordinate spawn = new TileCoordinate(10, 10);
+		TileCoordinate spawn = new TileCoordinate(50, 50);
 		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		player.init(level);
+		this.level.add(player);
 		
 		Mouse mouse = new Mouse();
 		addKeyListener(key);
@@ -103,7 +105,6 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 		this.key.update();
-		this.player.update();
 		this.level.update();
 	}
 

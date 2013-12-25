@@ -5,8 +5,8 @@ import com.piggy.raingame.graphics.Sprite;
 
 public class WaterTile extends Tile{
 	
-	public WaterTile(Sprite sprite) {
-		super(sprite);
+	public WaterTile(Sprite sprite, TileType type) {
+		super(sprite, type);
 	}
 	
 	@Override

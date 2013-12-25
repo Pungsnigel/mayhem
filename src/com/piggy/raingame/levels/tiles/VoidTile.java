@@ -5,8 +5,8 @@ import com.piggy.raingame.graphics.Sprite;
 
 public class VoidTile extends Tile {
 
-	public VoidTile(Sprite sprite) {
-		super(sprite);
+	public VoidTile(Sprite sprite, TileType type) {
+		super(sprite, type);
 	}
 	
 	public void render(int x, int y, Screen screen) {
@@ -14,3 +14,4 @@ public class VoidTile extends Tile {
 	}
 
 }
+	

@@ -1,14 +1,18 @@
 package com.piggy.raingame.entity.projectile;
 
+import java.awt.Rectangle;
 import java.util.Random;
 
 import com.piggy.raingame.entity.Entity;
+import com.piggy.raingame.entity.mob.Mob;
 import com.piggy.raingame.graphics.Sprite;
+import com.piggy.raingame.levels.tiles.Tile.TileType;
 
 public abstract class Projectile extends Entity {
 	
 	public static final Random rand = new Random();
 	
+	protected Mob owner;
 	protected final int xOrig, yOrig;
 	protected double angle;
 	protected Sprite sprite;
@@ -17,15 +21,43 @@ public abstract class Projectile extends Entity {
 	protected double vecX, vecY;
 	protected double speed, dmg, range;
 	
-	public Projectile (int x, int y, double dir ) {
-		this.x = xOrig = x;
-		this.y = yOrig = y;
+	public Projectile (int x, int y, int width, int height, double dir, Mob owner) {
+		this.x = this.xOrig = x;
+		this.y = this.yOrig = y;
+		this.width = width;
+		this.height = height;
 		angle = dir;
+		this.owner = owner;
 	}
 	
 	public void update() {
-		if (distanceTravelled() > this.range)
+		if (distanceTravelled() > this.range) {
 			this.remove();
+		}
+	}
+	
+	public Rectangle getCollisionBox() {
+		return new Rectangle((int)x, (int)y, width, height);
+	}
+	
+	protected boolean collision() {
+		boolean isColliding = false;
+		Rectangle box = this.getCollisionBox();
+		int maxY = (int)box.getMaxY() / 16;
+		int minY = (int)box.getMinY() / 16;
+		int minX = (int)box.getMinX() / 16;
+		int maxX = (int)box.getMaxX() / 16;
+		// Check collision for every corner
+		if (level.getTile(maxX, maxY).type == TileType.collidable)
+			isColliding = true;
+		if (level.getTile(minX, maxY).type == TileType.collidable)
+			isColliding = true;
+		if (level.getTile(maxX, minY).type == TileType.collidable)
+			isColliding = true;
+		if (level.getTile(minX, minY).type == TileType.collidable)
+			isColliding = true;
+				
+		return isColliding;
 	}
 	
 	/**

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.piggy.raingame.entity.Entity;
+import com.piggy.raingame.entity.projectile.CoffeeCup;
 import com.piggy.raingame.graphics.Screen;
 import com.piggy.raingame.levels.tiles.Tile;
 import com.piggy.raingame.levels.tiles.Tiles;
@@ -18,7 +19,6 @@ public class Level {
 	protected int [] tileInts;
 	
 	private List <Entity> entities = new ArrayList<Entity>();
-	
 	
 	/**
 	 * Create a random level of given size
@@ -44,7 +44,13 @@ public class Level {
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.update();
-			if (e.isRemoved())
+		}
+		clear();
+	}
+	
+	public void clear() {
+		for (int i = 0; i < entities.size(); i++) {
+			if (entities.get(i).isRemoved())
 				entities.remove(i);
 		}
 	}
@@ -79,11 +85,30 @@ public class Level {
 	}
 	
 	public void add(Entity e) {
+		e.init(this);
 		entities.add(e);
 	}
 	
 	public void remove(Entity e) {
 		entities.remove(e);
+	}
+	
+	/**
+	 * Given an entity, will check if that entity is colliding with any other entities. If a collision is 
+	 * detected, the didCollide method will be called on both entities.
+	 * @param e
+	 * @return true if one or more collisions were detected, otherwise false.
+	 */
+	public boolean checkCollisions(Entity e) {
+		boolean didCollide = false;
+		for (Entity other : entities) {
+			if (e.isColliding(other)) {
+				didCollide = true;
+				e.didCollide(other);
+				other.didCollide(e);
+			}
+		}
+		return didCollide;
 	}
 	
 	/* Private methods */
