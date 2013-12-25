@@ -20,7 +20,6 @@ public class Particle extends Entity{
 		this.x = x;
 		this.y = y;
 		this.ticks = ticks;
-		particles.add(this);
 	}
 	
 	public Particle (int x, int y, int ticks, int amount ) {
@@ -28,6 +27,7 @@ public class Particle extends Entity{
 		for (int i = 0; i < amount - 1; i++) {
 			particles.add(new Particle(x, y, ticks));
 		}
+		particles.add(this);
 	}
 	
 	public void update () {
