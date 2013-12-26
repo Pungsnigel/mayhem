@@ -1,11 +1,6 @@
 package com.piggy.mayhem.graphics;
 
 public class Sprite {
-
-	public final int WIDTH, HEIGHT;
-	private int x, y;
-	public int [] pixels;
-	private SpriteSheet sheet;
 	
 	public static Sprite grass = new Sprite(16, 16, 0, 0, SpriteSheet.tiles);
 	public static Sprite flowerGrass = new Sprite (16, 16, 2, 0, SpriteSheet.tiles);
@@ -28,6 +23,24 @@ public class Sprite {
 	
 	public static Sprite proj_coffe    = new Sprite(16, 16, 0, 0, SpriteSheet.projectiles);
 	
+	public final int WIDTH, HEIGHT;
+	private int x, y;
+	public int [] pixels;
+	protected SpriteSheet sheet;
+	
+	protected Sprite (int spriteWidth, int spriteHeight, SpriteSheet sheet) {
+		this.WIDTH = spriteWidth;
+		this.HEIGHT = spriteHeight;
+		this.sheet = sheet;
+		this.pixels = new int [WIDTH * HEIGHT];
+	}
+	
+	public Sprite (int [] pixels, int width, int height) {
+		this.WIDTH  = width;
+		this.HEIGHT = height;
+		this.pixels = pixels;
+	}
+	
 	public Sprite (int width, int height, int x, int y, SpriteSheet sheet) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
@@ -44,6 +57,7 @@ public class Sprite {
 		pixels = new int [WIDTH * HEIGHT];
 		setColor(color);
 	}
+	
 	
 	private void setColor(int color) {
 		for (int i = 0; i < WIDTH * HEIGHT; i++) {

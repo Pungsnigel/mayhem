@@ -11,11 +11,14 @@ public class SpriteSheet {
 	public static SpriteSheet chars = new SpriteSheet("/textures/character_sprites.png", 512);
 	public static SpriteSheet projectiles = new SpriteSheet("/textures/projectiles.png", 64);
 	
-	public static SpriteSheet player = new SpriteSheet("/textures/player.png", 2);
+	public static SpriteSheet player = new SpriteSheet("/textures/player.png", 64);
+	public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 3, 1, 16);
+	public static SpriteSheet player_down = new SpriteSheet(player, 0, 1, 3, 1, 16);
 	
 	private String path;
 	public final int WIDTH, HEIGHT;
 	public int [] pixels;
+	private Sprite[] sprites;
 
 	public SpriteSheet(String path, int size) {
 		this.path   = path;
@@ -31,6 +34,42 @@ public class SpriteSheet {
 		this.WIDTH  = width;
 		load();
 	}
+	
+	public SpriteSheet(SpriteSheet source, int x, int y, int width, int height, int spriteSize) {
+		int xx = x * spriteSize;
+		int yy = y * spriteSize;
+		int w =  width * spriteSize;
+		int h = width * spriteSize;
+		WIDTH = w;
+		HEIGHT = h;
+		pixels = new int [width * height];
+		for (int y0 = 0; y0 < height; y0++) {
+			int yPos = yy + y0;
+			for (int x0 = 0; x0 < width; x0++) {
+				int xPos = xx + x0;
+				pixels[x0 + y0 * w] = source.pixels[xPos + yPos * source.WIDTH];
+			}
+		}
+		int frame = 0;
+		sprites = new Sprite [width * height];
+		for (int ya = 0; ya < height; ya++) {
+			for (int xa = 0; xa < width; xa++) {						// Iterate through every sprite
+				int [] spritePixels = new int [spriteSize * spriteSize];
+				for (int y0 = 0; y0 < spriteSize; y0++) {
+					for (int x0 = 0; x0 < spriteSize; x0++) {			// Select every pixel in sprite
+						spritePixels [x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize)
+						                                             + (y0 + ya * spriteSize * width)];
+					}
+				}
+				Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
+				sprites[frame++] = sprite; 
+			}
+		}
+	}
+	
+	public Sprite[] getSprites() {
+		return this.sprites;
+	}	
 	
 	private void load() {
 		try {
