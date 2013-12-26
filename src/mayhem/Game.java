@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 import com.piggy.mayhem.entity.mob.Player;
 import com.piggy.mayhem.graphics.Screen;
-import com.piggy.mayhem.graphics.Sprite;
 import com.piggy.mayhem.input.KeyBoard;
 import com.piggy.mayhem.input.Mouse;
 import com.piggy.mayhem.levels.Level;
@@ -20,9 +19,6 @@ import com.piggy.mayhem.levels.TileCoordinate;
 
 public class Game extends Canvas implements Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int WIDTH = 300;
 	private static final int HEIGHT = WIDTH / 16 * 9;

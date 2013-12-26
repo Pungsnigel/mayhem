@@ -1,7 +1,6 @@
 package com.piggy.mayhem.entity.mob;
 
 import java.awt.Rectangle;
-
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.projectile.CoffeeCup;
 import com.piggy.mayhem.graphics.Sprite;

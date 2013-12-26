@@ -2,10 +2,7 @@ package com.piggy.mayhem.levels;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import com.piggy.mayhem.levels.tiles.Tile;
 
 public class SpawnLevel extends Level{
 
@@ -14,9 +11,6 @@ public class SpawnLevel extends Level{
 		super(path);
 	}
 	
-	// Grass = 35ff14
-	// Water = 145cff
-	// Trunk = ff3014
 	protected void generateLevel() {
 		for (int i = 0; i < tiles.length; i++) {
 		}

@@ -1,7 +1,5 @@
 package com.piggy.mayhem.entity.projectile;
 
-import java.awt.Color;
-
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.mob.Mob;
 import com.piggy.mayhem.entity.particle.ParticleSpawner;

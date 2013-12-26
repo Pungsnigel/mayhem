@@ -2,7 +2,6 @@ package com.piggy.mayhem.entity;
 
 import java.awt.Rectangle;
 import java.util.Random;
-
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.levels.Level;
 

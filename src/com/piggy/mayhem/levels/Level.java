@@ -1,8 +1,6 @@
 package com.piggy.mayhem.levels;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.particle.Particle;
 import com.piggy.mayhem.graphics.Screen;
@@ -13,7 +11,6 @@ public class Level {
 	
 	public static SpawnLevel example = new SpawnLevel("/levels/LvL.png");
 	
-	private Random rand = new Random();
 	protected int width, height;
 	protected int [] tiles;
 	protected int [] tileInts;
@@ -68,8 +65,7 @@ public class Level {
 	
 	public void render(int xScroll, int yScroll, Screen screen) {
 		screen.setOffset(xScroll, yScroll);
-		// FInd corners of screen from player,
-		// Bitshift to convert from pixels to tiles (same as / 16)
+		// Find corners of screen from player,
 		int x0 = xScroll / 16;		
 		int x1 = (xScroll + screen.width + 16) / 16;
 		int y0 = yScroll / 16;
@@ -79,7 +75,6 @@ public class Level {
 				getTile(x,y).render(x, y, screen);
 			}	
 		}
-		
 		for (Entity e : entities) 
 			e.render(screen);
 		for (Particle p : particles) 
@@ -132,7 +127,6 @@ public class Level {
 	
 	/* Private methods */
 	
-	
 	protected void loadLevel(String path) {
 		
 	}
@@ -140,9 +134,4 @@ public class Level {
 	protected void generateLevel() {
 		
 	}
-	
-	private void time () {
-		
-	}
-	
 }

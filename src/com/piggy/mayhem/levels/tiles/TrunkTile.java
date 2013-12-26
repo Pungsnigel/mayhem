@@ -14,8 +14,4 @@ public class TrunkTile extends Tile{
 		screen.renderTile(x * 16, y * 16, this.sprite);
 	}
 	
-	@Override
-	public boolean collidable() {
-		return true;
-	}
 }

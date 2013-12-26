@@ -1,7 +1,6 @@
 package com.piggy.mayhem.entity.particle;
 
 import java.awt.Rectangle;
-
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.graphics.Sprite;
@@ -26,7 +25,7 @@ public class Particle extends Entity{
 		
 		this.xa = random.nextGaussian();
 		this.ya = random.nextGaussian();
-		this.zz = random.nextFloat() + 1.0;
+		this.zz = random.nextFloat() + 2.0;
 	}
 	
 	public void update () {
@@ -58,7 +57,6 @@ public class Particle extends Entity{
 		}
 		
 		this.zz += this.za;
-		
 		this.x = (int)xx;
 		this.y = (int)yy;
 	}

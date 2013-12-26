@@ -14,4 +14,3 @@ public class VoidTile extends Tile {
 	}
 
 }
-	
