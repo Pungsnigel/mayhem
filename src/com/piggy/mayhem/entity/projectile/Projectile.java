@@ -38,7 +38,7 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public Rectangle getCollisionBox() {
-		return new Rectangle((int)x - 4, (int)y - 10, width, height);
+		return new Rectangle((int)x - 4, (int)y - 4, width, height);
 	}
 	
 	protected boolean collision() {

@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.particle.Particle;
-import com.piggy.mayhem.entity.projectile.Projectile;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.levels.tiles.Tile;
 import com.piggy.mayhem.levels.tiles.Tiles;
