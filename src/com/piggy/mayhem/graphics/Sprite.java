@@ -18,8 +18,12 @@ public class Sprite {
 	public static Sprite player_up2 	= new Sprite(16, 16, 1, 30, SpriteSheet.chars);
 	public static Sprite player_up3 	= new Sprite(16, 16, 2, 30, SpriteSheet.chars);
 	
-	public static Sprite player_left 	= new Sprite(16, 32, 2, 8, SpriteSheet.tiles);
-	public static Sprite player_right 	= new Sprite(16, 32, 6, 8, SpriteSheet.tiles);
+	public static Sprite player_left 	= new Sprite(16, 16, 0, 2, SpriteSheet.player);
+	public static Sprite player_left1 	= new Sprite(16, 16, 1, 2, SpriteSheet.player);
+	public static Sprite player_left2 	= new Sprite(16, 16, 2, 2, SpriteSheet.player);
+	public static Sprite player_right 	= new Sprite(16, 16, 0, 3, SpriteSheet.player);
+	public static Sprite player_right1 	= new Sprite(16, 16, 1, 3, SpriteSheet.player);
+	public static Sprite player_right2 	= new Sprite(16, 16, 2, 3, SpriteSheet.player);
 	
 	public static Sprite proj_coffe    = new Sprite(16, 16, 0, 0, SpriteSheet.projectiles);
 	

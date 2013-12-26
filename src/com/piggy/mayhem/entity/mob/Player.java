@@ -74,7 +74,20 @@ public class Player extends Mob {
 			}
 				
 		}
-		if (dir == 1) sprite = Sprite.player_down1;
+		if (dir == 1) {
+			sprite = Sprite.player_right2;
+			
+			if (animCount % 40 > 10) {
+				sprite = Sprite.player_right1;
+				if (animCount % 40 > 20) {
+					sprite = Sprite.player_right2;
+					if (animCount % 40 > 30) {
+						sprite = Sprite.player_right;
+						
+					}
+				}
+			}
+		}
 		if (dir == 2) {
 			sprite = Sprite.player_down1;
 			
@@ -90,7 +103,20 @@ public class Player extends Mob {
 			}
 				
 		}
-		if (dir == 3) sprite = Sprite.player_left;
+		if (dir == 3) {
+			sprite = Sprite.player_left;
+			
+			if (animCount % 40 > 10) {
+				sprite = Sprite.player_left1;
+				if (animCount % 40 > 20) {
+					sprite = Sprite.player_left;
+					if (animCount % 40 > 30) {
+						sprite = Sprite.player_left2;
+						
+					}
+				}
+			}
+		}
 		screen.renderEntity(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
 	}
 	

@@ -14,6 +14,8 @@ public class SpriteSheet {
 	public static SpriteSheet player = new SpriteSheet("/textures/player.png", 64);
 	public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 3, 1, 16);
 	public static SpriteSheet player_down = new SpriteSheet(player, 0, 1, 3, 1, 16);
+	public static SpriteSheet player_left = new SpriteSheet(player, 0, 2, 3, 1, 16);
+	public static SpriteSheet player_right = new SpriteSheet(player, 0, 3, 3, 1, 16);
 	
 	private String path;
 	public final int WIDTH, HEIGHT;
@@ -42,7 +44,7 @@ public class SpriteSheet {
 		int h = width * spriteSize;
 		WIDTH = w;
 		HEIGHT = h;
-		pixels = new int [width * height];
+		pixels = new int [w * h];
 		for (int y0 = 0; y0 < height; y0++) {
 			int yPos = yy + y0;
 			for (int x0 = 0; x0 < width; x0++) {
