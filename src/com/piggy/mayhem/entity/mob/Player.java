@@ -1,8 +1,6 @@
 package com.piggy.mayhem.entity.mob;
 
-
-import mayhem.Game;
-
+import com.piggy.mayhem.Game;
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.projectile.CoffeeCup;
 import com.piggy.mayhem.entity.projectile.Projectile;

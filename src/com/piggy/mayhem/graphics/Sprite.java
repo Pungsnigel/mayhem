@@ -57,7 +57,7 @@ public class Sprite {
 	private void load() {
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				pixels [x + y * WIDTH] = sheet.pixels[this.x + x + (y + this.y) * sheet.SIZE];
+				pixels [x + y * WIDTH] = sheet.pixels[this.x + x + (y + this.y) * sheet.WIDTH];
 			}
 		}
 	}

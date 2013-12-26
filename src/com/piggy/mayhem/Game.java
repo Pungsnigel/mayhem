@@ -1,4 +1,4 @@
-package mayhem;
+package com.piggy.mayhem;
 
 import java.awt.Canvas;
 import java.awt.Color;

@@ -11,14 +11,24 @@ public class SpriteSheet {
 	public static SpriteSheet chars = new SpriteSheet("/textures/character_sprites.png", 512);
 	public static SpriteSheet projectiles = new SpriteSheet("/textures/projectiles.png", 64);
 	
+	public static SpriteSheet player = new SpriteSheet("/textures/player.png", 2);
+	
 	private String path;
-	public final int SIZE;
+	public final int WIDTH, HEIGHT;
 	public int [] pixels;
 
 	public SpriteSheet(String path, int size) {
 		this.path   = path;
-		this.SIZE   = size;
+		this.HEIGHT = this.WIDTH = size;
 		this.pixels = new int [size*size];
+		load();
+	}
+	
+	public SpriteSheet(String path, int width, int height) {
+		this.path   = path;
+		this.pixels = new int [width*height];
+		this.HEIGHT = height;
+		this.WIDTH  = width;
 		load();
 	}
 	
