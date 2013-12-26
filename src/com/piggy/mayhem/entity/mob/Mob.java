@@ -68,7 +68,7 @@ public abstract class Mob extends Entity{
 	}
 	
 	protected void shoot(int x, int y, double dir) {
-		level.add(new CoffeeCup(x + 3, y, dir, this));
+		level.add(new CoffeeCup(x, y, dir, this));
 	}
 	
 }

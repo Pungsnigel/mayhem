@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.mob.Mob;
+import com.piggy.mayhem.entity.particle.Particle;
 import com.piggy.mayhem.graphics.Sprite;
 import com.piggy.mayhem.levels.tiles.Tile.TileType;
 
@@ -37,7 +38,7 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public Rectangle getCollisionBox() {
-		return new Rectangle((int)x - 4, (int)y - 10, width, height);
+		return new Rectangle((int)x - 4, (int)y - 4, width, height);
 	}
 	
 	protected boolean collision() {
@@ -58,6 +59,10 @@ public abstract class Projectile extends Entity {
 			isColliding = true;
 				
 		return isColliding;
+	}
+	
+	public void remove () {
+		super.remove();
 	}
 	
 	/**
