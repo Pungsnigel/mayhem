@@ -12,10 +12,10 @@ public class SpriteSheet {
 	public static SpriteSheet projectiles = new SpriteSheet("/textures/projectiles.png", 64);
 	
 	public static SpriteSheet player = new SpriteSheet("/textures/player.png", 64);
-	public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 3, 1, 16);
-	public static SpriteSheet player_down = new SpriteSheet(player, 0, 1, 3, 1, 16);
-	public static SpriteSheet player_left = new SpriteSheet(player, 0, 2, 3, 1, 16);
-	public static SpriteSheet player_right = new SpriteSheet(player, 0, 3, 3, 1, 16);
+	public static SpriteSheet player_up = new SpriteSheet(player, 0, 0, 4, 1, 16);
+	public static SpriteSheet player_down = new SpriteSheet(player, 0, 1, 4, 1, 16);
+	public static SpriteSheet player_left = new SpriteSheet(player, 0, 2, 4, 1, 16);
+	public static SpriteSheet player_right = new SpriteSheet(player, 0, 3, 4, 1, 16);
 	
 	private String path;
 	public final int WIDTH, HEIGHT;

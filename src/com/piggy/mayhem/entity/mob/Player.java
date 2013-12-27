@@ -17,10 +17,10 @@ public class Player extends Mob {
 	private double cooldown = 0;
 	private boolean walking;
 	
-	private AnimatedSprite down = new AnimatedSprite(16, 16, SpriteSheet.player_down, 3);
-	private AnimatedSprite up = new AnimatedSprite(16, 16, SpriteSheet.player_up, 3);
-	private AnimatedSprite left= new AnimatedSprite(16, 16, SpriteSheet.player_left, 3);
-	private AnimatedSprite right = new AnimatedSprite(16, 16, SpriteSheet.player_right, 3);
+	private AnimatedSprite down = new AnimatedSprite(16, 16, SpriteSheet.player_down, 4);
+	private AnimatedSprite up = new AnimatedSprite(16, 16, SpriteSheet.player_up, 4);
+	private AnimatedSprite left= new AnimatedSprite(16, 16, SpriteSheet.player_left, 4);
+	private AnimatedSprite right = new AnimatedSprite(16, 16, SpriteSheet.player_right, 4);
 	
 	private AnimatedSprite currentAnimation;
 	
@@ -31,7 +31,6 @@ public class Player extends Mob {
 	public Player(int x, int y, KeyBoard input) {
 		super(x,y, 16, 8);
 		this.input = input;
-		this.sprite = Sprite.player_down1;
 		currentAnimation = down;
 	}
 	
