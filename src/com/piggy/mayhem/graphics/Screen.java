@@ -45,6 +45,26 @@ public class Screen {
 		}
 	}
 	
+	/*
+	 * For debugging - render entire sheet
+	 * TODO Remove before any kind of release!
+	 */
+	public void renderSheet (int xPos, int yPos, SpriteSheet sheet, boolean fixed) {
+		if (fixed) {
+			xPos -= xOffset;
+			yPos -= yOffset;
+		}
+		for (int y = 0; y < sheet.HEIGHT; y++) {
+			int ya = y + yPos;
+			for (int x = 0; x < sheet.WIDTH; x++) {
+				int xa = x + xPos;
+				if (xa < -sheet.WIDTH || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				pixels[xa + ya*width] = sheet.pixels[x + y * sheet.WIDTH];
+			}
+		}
+	}
+	
 	public void renderTile(int xPos, int yPos, Sprite tile) {
 		renderSprite(xPos, yPos, tile, true);
 	}

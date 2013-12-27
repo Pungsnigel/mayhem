@@ -4,16 +4,25 @@ import com.piggy.mayhem.Game;
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.projectile.CoffeeCup;
 import com.piggy.mayhem.entity.projectile.Projectile;
+import com.piggy.mayhem.graphics.AnimatedSprite;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.graphics.Sprite;
+import com.piggy.mayhem.graphics.SpriteSheet;
 import com.piggy.mayhem.input.KeyBoard;
 import com.piggy.mayhem.input.Mouse;
 
 public class Player extends Mob {
 
 	private KeyBoard input;
-	private int animCount = 0;
-	private double cooldown = 0;;
+	private double cooldown = 0;
+	private boolean walking;
+	
+	private AnimatedSprite down = new AnimatedSprite(16, 16, SpriteSheet.player_down, 3);
+	private AnimatedSprite up = new AnimatedSprite(16, 16, SpriteSheet.player_up, 3);
+	private AnimatedSprite left= new AnimatedSprite(16, 16, SpriteSheet.player_left, 3);
+	private AnimatedSprite right = new AnimatedSprite(16, 16, SpriteSheet.player_right, 3);
+	
+	private AnimatedSprite currentAnimation;
 	
 	public Player(KeyBoard input) {
 		this(20, 20, input);
@@ -23,26 +32,38 @@ public class Player extends Mob {
 		super(x,y, 16, 8);
 		this.input = input;
 		this.sprite = Sprite.player_down1;
+		currentAnimation = down;
 	}
 	
 	@Override
 	public void update() {
+		if (walking) {
+			currentAnimation.update();
+		}else {
+			currentAnimation.setFrame(0);
+		}
+		
 		if (cooldown != 0) cooldown--;
 		int dx = 0, dy = 0;
-		if (input.up) 	 dy--;
-		if (input.down)  dy++;
-		if (input.left)  dx--;
-		if (input.right) dx++;
-		
-		boolean walking = (dx != 0 || dy != 0);
-		if (walking) {
-			move(dx,dy);
-			if (animCount < 1000) {
-				animCount++;
-			} else {
-				animCount = 0;
-			}
+		if (input.up) {
+			dy--;
+			currentAnimation = up;
+		}else if (input.down) {
+			dy++;
+			currentAnimation = down;
 		}
+		if (input.left) {
+			dx--;
+			currentAnimation = left;
+		}
+		if (input.right) {
+			dx++;
+			currentAnimation = right;
+		}
+		
+		walking = (dx != 0 || dy != 0);
+		if (walking) 
+			move(dx,dy);
 		if (Mouse.getB() == 1 && cooldown <= 0) 
 			calcAndFireProj();
 	}
@@ -58,66 +79,8 @@ public class Player extends Mob {
 	}
 
 	public void render(Screen screen) {
-		boolean xFlip = false, yFlip = false;
-		if (dir == 0) {
-			sprite = Sprite.player_up1;
-			
-			if (animCount % 40 > 10) {
-				sprite = Sprite.player_up2;
-				if (animCount % 40 > 20) {
-					sprite = Sprite.player_up1;
-					if (animCount % 40 > 30) {
-						sprite = Sprite.player_up3;
-						
-					}
-				}
-			}
-				
-		}
-		if (dir == 1) {
-			sprite = Sprite.player_right2;
-			
-			if (animCount % 40 > 10) {
-				sprite = Sprite.player_right1;
-				if (animCount % 40 > 20) {
-					sprite = Sprite.player_right2;
-					if (animCount % 40 > 30) {
-						sprite = Sprite.player_right;
-						
-					}
-				}
-			}
-		}
-		if (dir == 2) {
-			sprite = Sprite.player_down1;
-			
-			if (animCount % 40 > 10) {
-				sprite = Sprite.player_down2;
-				if (animCount % 40 > 20) {
-					sprite = Sprite.player_down1;
-					if (animCount % 40 > 30) {
-						sprite = Sprite.player_down3;
-						
-					}
-				}
-			}
-				
-		}
-		if (dir == 3) {
-			sprite = Sprite.player_left;
-			
-			if (animCount % 40 > 10) {
-				sprite = Sprite.player_left1;
-				if (animCount % 40 > 20) {
-					sprite = Sprite.player_left;
-					if (animCount % 40 > 30) {
-						sprite = Sprite.player_left2;
-						
-					}
-				}
-			}
-		}
-		screen.renderEntity(x, y - this.sprite.HEIGHT / 2, this.sprite, xFlip, yFlip);
+		this.sprite = currentAnimation.getSprite();
+		screen.renderEntity(x, y - this.sprite.HEIGHT / 2, this.sprite, false, false);
 	}
 	
 	public void didCollide(Entity other){

@@ -41,13 +41,13 @@ public class SpriteSheet {
 		int xx = x * spriteSize;
 		int yy = y * spriteSize;
 		int w =  width * spriteSize;
-		int h = width * spriteSize;
+		int h = height * spriteSize;
 		WIDTH = w;
 		HEIGHT = h;
 		pixels = new int [w * h];
-		for (int y0 = 0; y0 < height; y0++) {
+		for (int y0 = 0; y0 < h; y0++) {
 			int yPos = yy + y0;
-			for (int x0 = 0; x0 < width; x0++) {
+			for (int x0 = 0; x0 < w; x0++) {
 				int xPos = xx + x0;
 				pixels[x0 + y0 * w] = source.pixels[xPos + yPos * source.WIDTH];
 			}
@@ -60,7 +60,7 @@ public class SpriteSheet {
 				for (int y0 = 0; y0 < spriteSize; y0++) {
 					for (int x0 = 0; x0 < spriteSize; x0++) {			// Select every pixel in sprite
 						spritePixels [x0 + y0 * spriteSize] = pixels[(x0 + xa * spriteSize)
-						                                             + (y0 + ya * spriteSize * width)];
+						                                             + (y0 + ya * spriteSize) * WIDTH];
 					}
 				}
 				Sprite sprite = new Sprite(spritePixels, spriteSize, spriteSize);
