@@ -127,7 +127,7 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.dispose(); 		// Cleanup graphics after drawing
-		bs.show(); 			// Make next buffer visable
+		bs.show(); 			// Make next buffer visible
 	}
 	
 	public static int getWindowWidth() {
@@ -146,7 +146,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
-
+			
 		game.start();
 	}
 

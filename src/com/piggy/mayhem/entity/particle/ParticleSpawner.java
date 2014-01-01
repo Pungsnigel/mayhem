@@ -3,6 +3,7 @@ package com.piggy.mayhem.entity.particle;
 import java.awt.Color;
 
 import com.piggy.mayhem.entity.spawner.Spawner;
+import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.levels.Level;
 
 public class ParticleSpawner extends Spawner{

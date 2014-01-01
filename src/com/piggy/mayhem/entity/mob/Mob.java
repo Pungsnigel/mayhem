@@ -1,8 +1,10 @@
 package com.piggy.mayhem.entity.mob;
 
 import java.awt.Rectangle;
+
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.projectile.CoffeeCup;
+import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.graphics.Sprite;
 import com.piggy.mayhem.levels.tiles.Tile.TileType;
 
@@ -38,13 +40,10 @@ public abstract class Mob extends Entity{
 		
 	}
 	
-	public void update() {
-	}
+	public abstract void update();
 
 	
-	public void render() {
-		
-	}
+	public abstract void render(Screen screen);
 	
 	private boolean collision() {
 		boolean isColliding = false;

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.piggy.mayhem.entity.Entity;
+import com.piggy.mayhem.graphics.Screen;
 
-public class Spawner extends Entity{
+public abstract class Spawner extends Entity{
 	
 	private List <Entity> entities = new ArrayList <Entity>();
 	
@@ -27,6 +28,5 @@ public class Spawner extends Entity{
 	public void didCollide(Entity e) {
 		
 	}
-	
 
 }
