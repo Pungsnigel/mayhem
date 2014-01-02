@@ -11,9 +11,14 @@ import com.piggy.mayhem.levels.tiles.Tile.TileType;
 public abstract class Mob extends Entity{
 
 	protected Sprite sprite;
-	protected int dir = 0;
 	protected boolean moving = false;
 	protected int lastX, lastY;
+	
+	protected enum Direction {
+		UP, DOWN, RIGHT, LEFT
+	}
+	
+	protected Direction dir;
 	
 	public Mob(int x, int y, int width, int height) {
 		this.height = height;
@@ -23,10 +28,10 @@ public abstract class Mob extends Entity{
 	}
 	
 	public void move(int dx, int dy) {
-		if (dx > 0) dir = 1;
-		if (dx < 0) dir = 3;
-		if (dy > 0) dir = 2;
-		if (dy < 0) dir = 0;
+		if (dx > 0) dir = Direction.RIGHT;
+		if (dx < 0) dir = Direction.LEFT;
+		if (dy > 0) dir = Direction.DOWN;
+		if (dy < 0) dir = Direction.UP;
 		
 		lastX = x;
 		lastY = y;
