@@ -6,7 +6,6 @@ import com.piggy.mayhem.entity.projectile.CoffeeCup;
 import com.piggy.mayhem.entity.projectile.Projectile;
 import com.piggy.mayhem.graphics.AnimatedSprite;
 import com.piggy.mayhem.graphics.Screen;
-import com.piggy.mayhem.graphics.Sprite;
 import com.piggy.mayhem.graphics.SpriteSheet;
 import com.piggy.mayhem.input.KeyBoard;
 import com.piggy.mayhem.input.Mouse;
