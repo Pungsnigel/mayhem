@@ -1,5 +1,6 @@
 package com.piggy.mayhem.levels;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.particle.Particle;
@@ -53,12 +54,15 @@ public class Level {
 	}
 	
 	public void clear() {
-		for (Entity e : entities) {
-			if (e.isRemoved()) {
-				entities.remove(e);
+		Iterator<Entity> iter = entities.iterator();
+		while(iter.hasNext()) {
+			Entity e = iter.next();
+			if (e.isRemoved())	 {
 				collidables.remove(e);
+				iter.remove();
 			}
 		}
+
 		for (int i = 0; i < particles.size(); i++) {
 			if (particles.get(i).isRemoved())
 				particles.remove(i);
@@ -77,10 +81,10 @@ public class Level {
 				getTile(x,y).render(x, y, screen);
 			}	
 		}
-		for (Entity e : entities) 
-			e.render(screen);
 		for (Particle p : particles) 
 			p.render(screen);
+		for (Entity e : entities) 
+			e.render(screen);
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -118,7 +122,8 @@ public class Level {
 	 */
 	public boolean checkCollisions(Entity e) {
 		boolean didCollide = false;
-		for (Entity other : collidables) {
+		for (int i = 0; i < collidables.size(); i++) {
+			Entity other = collidables.get(i);
 			if (e.isColliding(other)) {
 				didCollide = true;
 				e.didCollide(other);

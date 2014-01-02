@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
 		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		player.init(level);
 		this.level.add(player);
-//		this.level.add(new TestMob(15, 15, 15, 15));
+		this.level.add(new TestMob(15, 15, 15, 15));
 		
 		Mouse mouse = new Mouse();
 		addKeyListener(key);
