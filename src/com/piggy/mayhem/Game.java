@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.piggy.mayhem.entity.mob.Player;
+import com.piggy.mayhem.entity.mob.TestMob;
 import com.piggy.mayhem.graphics.Screen;
 import com.piggy.mayhem.input.KeyBoard;
 import com.piggy.mayhem.input.Mouse;
@@ -47,6 +48,7 @@ public class Game extends Canvas implements Runnable {
 		this.player = new Player(spawn.getX(), spawn.getY(),key);
 		player.init(level);
 		this.level.add(player);
+//		this.level.add(new TestMob(15, 15, 15, 15));
 		
 		Mouse mouse = new Mouse();
 		addKeyListener(key);

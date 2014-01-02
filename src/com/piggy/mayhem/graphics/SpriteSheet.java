@@ -17,6 +17,12 @@ public class SpriteSheet {
 	public static SpriteSheet player_left = new SpriteSheet(player, 0, 2, 4, 1, 16);
 	public static SpriteSheet player_right = new SpriteSheet(player, 0, 3, 4, 1, 16);
 	
+	public static SpriteSheet enemy = new SpriteSheet("/textures/enemy.png", 64);
+	public static SpriteSheet enemy_up = new SpriteSheet(enemy, 0, 0, 4, 1, 16);
+	public static SpriteSheet enemy_down = new SpriteSheet(enemy, 0, 1, 4, 1, 16);
+	public static SpriteSheet enemy_left = new SpriteSheet(enemy, 0, 2, 4, 1, 16);
+	public static SpriteSheet enemy_right = new SpriteSheet(enemy, 0, 3, 4, 1, 16);
+	
 	private String path;
 	public final int WIDTH, HEIGHT;
 	public int [] pixels;

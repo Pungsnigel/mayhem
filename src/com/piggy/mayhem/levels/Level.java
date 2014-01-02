@@ -16,6 +16,7 @@ public class Level {
 	protected int [] tileInts;
 	
 	private List <Entity> entities = new ArrayList<Entity>();
+	private List <Entity> collidables = new ArrayList<Entity>();
 	private List <Particle> particles = new ArrayList<Particle>();
 	
 	/**
@@ -52,12 +53,13 @@ public class Level {
 	}
 	
 	public void clear() {
-		int i;
-		for (i = 0; i < entities.size(); i++) {
-			if (entities.get(i).isRemoved())
-				entities.remove(i);
+		for (Entity e : entities) {
+			if (e.isRemoved()) {
+				entities.remove(e);
+				collidables.remove(e);
+			}
 		}
-		for (i = 0; i < particles.size(); i++) {
+		for (int i = 0; i < particles.size(); i++) {
 			if (particles.get(i).isRemoved())
 				particles.remove(i);
 		}
@@ -97,6 +99,7 @@ public class Level {
 			particles.add((Particle) e);
 		} else {
 			entities.add(e);
+			collidables.add(e);
 		}
 	}
 	
@@ -115,7 +118,7 @@ public class Level {
 	 */
 	public boolean checkCollisions(Entity e) {
 		boolean didCollide = false;
-		for (Entity other : entities) {
+		for (Entity other : collidables) {
 			if (e.isColliding(other)) {
 				didCollide = true;
 				e.didCollide(other);
