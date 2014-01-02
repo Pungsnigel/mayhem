@@ -1,5 +1,7 @@
 package com.piggy.mayhem.entity.projectile;
 
+import java.awt.Rectangle;
+
 import com.piggy.mayhem.entity.Entity;
 import com.piggy.mayhem.entity.mob.Mob;
 import com.piggy.mayhem.entity.particle.ParticleSpawner;
@@ -41,6 +43,10 @@ public class CoffeeCup extends Projectile {
 		super.remove();
 		level.add(new ParticleSpawner((int)x, (int)y, 100, 20));
 		level.add(new ParticleSpawner((int)x, (int)y, 100, 10, 0xFF7A6835));
+	}
+	
+	public Rectangle getCollisionBox() {
+		return new Rectangle((int)x - 4, (int)y - 4, width, height);
 	}
 	
 	public void render(Screen screen) {

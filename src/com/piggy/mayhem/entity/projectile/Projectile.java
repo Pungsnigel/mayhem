@@ -35,8 +35,10 @@ public abstract class Projectile extends Entity {
 		}
 	}
 	
+	
+	//TODO should probably be abstract? All projectiles will prob need a offset etc.
 	public Rectangle getCollisionBox() {
-		return new Rectangle((int)x - 4, (int)y - 4, width, height);
+		return new Rectangle((int)x, (int)y, width, height);
 	}
 	
 	protected boolean collision() {
