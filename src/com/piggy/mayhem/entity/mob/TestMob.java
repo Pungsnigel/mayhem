@@ -8,6 +8,7 @@ import com.piggy.mayhem.graphics.SpriteSheet;
 
 public class TestMob extends Mob {
 	
+	private int health = 100;
 	private int dx = 1;
 	private int dy = 1;
 	private int time = 0; 				// To make random AI look a bit better, use a counter to make sure it doesn't update to often
@@ -36,6 +37,8 @@ public class TestMob extends Mob {
 
 	@Override
 	public void update() {
+		if (health < 0) 
+			remove();
 		time++;
 		if (time % (random.nextInt(50) + 30) == 0)	{
 			dx = random.nextInt(3) - 1; // Random value between -1 - 1, left, still or right.
@@ -60,6 +63,7 @@ public class TestMob extends Mob {
 		if (other instanceof Projectile) {
 			dx *= -1;
 			dy *= -1;
+			health -= 30;
 		}
 	}
 }
