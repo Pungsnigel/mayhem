@@ -14,8 +14,8 @@ public class CoffeeCup extends Projectile {
 
 	public CoffeeCup(int x, int y, double dir, Mob owner) {
 		super(x, y, 8, 8, dir, owner);
-		range = Projectile.rand.nextInt(60) + 80;
-		speed = 2;
+		range = Projectile.rand.nextInt(40) + 150;
+		speed = 3;
 		dmg = 20;
 		sprite = Sprite.proj_coffe;
 		

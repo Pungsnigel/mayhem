@@ -13,6 +13,7 @@ public abstract class Mob extends Entity{
 	protected Sprite sprite;
 	protected boolean moving = false;
 	protected int lastX, lastY;
+	protected boolean walking;
 	
 	protected enum Direction {
 		UP, DOWN, RIGHT, LEFT
@@ -28,6 +29,7 @@ public abstract class Mob extends Entity{
 	}
 	
 	public void move(int dx, int dy) {
+		walking = (dx != 0 || dy != 0);
 		if (dx > 0) dir = Direction.RIGHT;
 		if (dx < 0) dir = Direction.LEFT;
 		if (dy > 0) dir = Direction.DOWN;

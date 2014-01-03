@@ -14,7 +14,7 @@ public class Player extends Mob {
 
 	private KeyBoard input;
 	private double cooldown = 0;
-	private boolean walking;
+	
 	
 	private AnimatedSprite down = new AnimatedSprite(16, 16, SpriteSheet.player_down, 4);
 	private AnimatedSprite up = new AnimatedSprite(16, 16, SpriteSheet.player_up, 4);
@@ -58,10 +58,7 @@ public class Player extends Mob {
 			dx++;
 			currentAnimation = right;
 		}
-		
-		walking = (dx != 0 || dy != 0);
-		if (walking) 
-			move(dx,dy);
+		move(dx,dy);
 		if (Mouse.getB() == 1 && cooldown <= 0) 
 			calcAndFireProj();
 	}
